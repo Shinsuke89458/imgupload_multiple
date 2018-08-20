@@ -86,6 +86,8 @@ class ImageUploader {
     }
     $thumbHeight = round($height * THUMBNAIL_WIDTH / $width);
     $thumbImage = imagecreatetruecolor(THUMBNAIL_WIDTH, $thumbHeight);
+    imagealphablending($thumbImage, false); //ブレンドモードを無効にする
+    imagesavealpha($thumbImage, true); //完全なアルファチャネル情報を保存するフラグをonにする
     imagecopyresampled($thumbImage, $srcImage, 0, 0, 0, 0, THUMBNAIL_WIDTH, $thumbHeight, $width, $height);
     switch ($this->_imageType) {
       case IMAGETYPE_GIF:
